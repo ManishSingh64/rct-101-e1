@@ -3,20 +3,23 @@ import styles from "./addTask.module.css";
 
 
 
-const AddTask = ({addTodo}) => {
+const AddTask = ({addTask}) => {
   // NOTE: do not delete `data-cy` key value pair
-  const [value, setValue] = React.useState("")
+  
+  const [newtask, setNewTask] = React.useState("")
   return (
 
     <div className={styles.todoForm}>
-      <input data-cy="add-task-input" type="text" onChange={(e) => {
-        setValue(e.target.value)
+      <input data-cy="add-task-input" type="text" placeholder="add your task " value={newtask} onChange={(e) => {
+        setNewTask(e.target.value)
       }}/>
 
       <button data-cy="add-task-button" onClick={() =>{
-        console.log(value)
-        addTodo(value)
-        setValue("")
+        if(newtask !== ""){
+          addTask(newtask)
+        }
+
+        setNewTask("")
       }}>+</button>
     </div>
   );
